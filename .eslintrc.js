@@ -1,21 +1,32 @@
 module.exports = {
   root: true,
-  plugins: ['jsx-a11y'],
   extends: [
     'react-app',
     'plugin:jsx-a11y/recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    'prettier/@typescript-eslint',
+    'prettier',
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   rules: {},
   overrides: [
+    {
+      files: ['*.tsx'],
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['pages/**/*.tsx'],
+      rules: {
+        'react/react-in-jsx-scope': 'off',
+      },
+    },
     {
       files: ['*.test.ts?(x)'],
       rules: {
@@ -25,7 +36,7 @@ module.exports = {
   ],
   settings: {
     react: {
-      version: '17',
+      version: 'detect',
     },
   },
 };
